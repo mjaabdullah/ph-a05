@@ -40,10 +40,11 @@
 
         <!-- Form Section -->
 
-        <form class="form">
+        <div class="form">
           <fieldset class="fieldset">
             <label class="label text-[#1F2937]">Username</label>
             <input
+              id="user-name"
               type="text"
               class="input w-full"
               placeholder="Enter Username"
@@ -51,14 +52,17 @@
             <span class="text-[#4A00FF] text-sm">Default: admin</span>
             <label class="label text-[#1F2937]">Password</label>
             <input
+              id="password"
               type="password"
               class="input w-full"
               placeholder="Enter Password"
             />
             <span class="text-[#4A00FF] text-sm">Default: admin123</span>
-            <button class="btn btn-primary mt-4">Login</button>
+            <button id="sign-in-btn" class="btn btn-primary mt-4">
+              Sign In
+            </button>
           </fieldset>
-        </form>
+        </div>
         <!-- or section -->
         <div>
           <div class="text-center text-[#64748B] my-4 divider">OR</div>
