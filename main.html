@@ -20,10 +20,57 @@
       rel="stylesheet"
     />
 
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- css style -->
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body>
-    <h1>main file</h1>
+  <body class="bg-[#F8FAFC]">
+    <nav class="bg-white shadow-sm">
+      <div
+        class="max-w-[1440px] mx-auto flex flex-col items-center gap-3 py-2 md:flex-row md:navbar"
+      >
+        <!-- left side -->
+        <div class="flex-1">
+          <div class="flex items-center gap-1">
+            <img
+              src="./assets/github-logo.png"
+              alt="GitHub Issues Tracker"
+              class="w-9 h-auto"
+            />
+            <h2 class="font-semibold text-2xl">GitHub Issues Tracker</h2>
+          </div>
+        </div>
+        <!-- right side -->
+        <div class="flex gap-2">
+          <label class="input">
+            <svg
+              class="h-[1em] opacity-50"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-width="2.5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+            <input type="search" required placeholder="Search issues..." />
+          </label>
+          <button id="search-btn" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </nav>
   </body>
 </html>
