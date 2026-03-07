@@ -31,7 +31,7 @@
     <!-- css style -->
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body class="bg-[#F8FAFC]">
+  <body class="bg-[#F8FAFC] min-h-screen">
     <nav class="bg-white shadow-sm">
       <div
         class="max-w-[1440px] mx-auto flex flex-col items-center gap-3 py-2 md:flex-row md:navbar"
@@ -74,7 +74,7 @@
     </nav>
     <!-- button section -->
     <section
-      class="max-w-6xl mx-auto p-6 flex items-center gap-3 sm:flex-row flex-col"
+      class="max-w-6xl mx-auto p-6 flex items-center gap-3 sm:flex-row flex-col bg-white rounded-lg shadow-sm my-6"
     >
       <button
         id="btn-all"
@@ -97,6 +97,46 @@
       >
         Closed
       </button>
+    </section>
+
+    <!-- issues section -->
+    <section
+      class="max-w-6xl mx-auto p-6 shadow-sm rounded-lg bg-white flex items-center justify-between"
+    >
+      <!-- left -->
+      <div class="flex justify-center items-center gap-2">
+        <img src="./assets/Aperture.png" alt="Aperture" />
+        <div>
+          <h3 class="font-semibold text-xl"><span id="issues">00</span> Issues</h3>
+          <p class="text-[#64748B]">Track and manage your project issues</p>
+        </div>
+      </div>
+      <!-- right -->
+      <div class="flex justify-center items-center gap-2">
+        <div class="flex justify-center items-center gap-1">
+          <img src="./assets/Open-Status.png" alt="Open Status" />
+          Open
+        </div>
+        <div class="flex justify-center items-center gap-1">
+          <img src="./assets/Closed- Status .png" alt="Closed Status" />
+          Closed
+        </div>
+    </section>
+    <!-- issues Cards -->
+    <section class="max-w-6xl mx-auto p-6 sm:p-0">
+      <!-- Loading spinner -->
+      <div id="loading-spinner" class="hidden text-center py-4">
+        <span class="loading loading-spinner loading-xs"></span>
+      <span class="loading loading-spinner loading-sm"></span>
+      <span class="loading loading-spinner loading-md"></span>
+      <span class="loading loading-spinner loading-lg"></span>
+      <span class="loading loading-spinner loading-xl"></span>
+      </div>
+      <div id="issues-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-center justify-center place-items-center">
+        <!-- Issue cards will be dynamically inserted here -->
+         
+      </div>
+      
     </section>
 
     <script src="./js/main.js"></script>
