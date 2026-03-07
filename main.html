@@ -72,5 +72,33 @@
         </div>
       </div>
     </nav>
+    <!-- button section -->
+    <section
+      class="max-w-6xl mx-auto p-6 flex items-center gap-3 sm:flex-row flex-col"
+    >
+      <button
+        id="btn-all"
+        class="btn btn-primary w-full sm:w-28"
+        onclick="toggleActiveBtn(this)"
+      >
+        All
+      </button>
+      <button
+        id="btn-open"
+        class="btn w-full sm:w-28"
+        onclick="toggleActiveBtn(this)"
+      >
+        Open
+      </button>
+      <button
+        id="btn-closed"
+        class="btn w-full sm:w-28"
+        onclick="toggleActiveBtn(this)"
+      >
+        Closed
+      </button>
+    </section>
+
+    <script src="./js/main.js"></script>
   </body>
 </html>
