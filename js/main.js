@@ -30,6 +30,8 @@ function toggleActiveBtn(btn) {
 
 }
 }
+
+
 const getIssues = async (order) => {
     issuesCardsContainer.innerHTML = '';
     loadingSpinner.classList.remove('hidden');
@@ -115,13 +117,76 @@ function renderLabelBadge(label) {
     </span>
   `;
 }
+
+const getSingleIssue = async (id) => {
+  let response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    
+    let data = await response.json();
+
+    modalContent(data.data);
+}
+
+ 
+function modalContent(issue) {
+  console.log(issue);
+
+  const myModal = document.getElementById('my_modal_1');
+  myModal.innerHTML = `
+  <div class="modal-box">
+    <div class="space-y-3">
+      <h2 class="font-bold text-2xl ">${issue.title}</h2>
+      <div class="text-xs flex items-center justify-start flex-wrap">
+        <span class="text-white rounded-full py-1 px-3 ${issue.status == 'open' ? 'bg-green-600' : 'bg-[#A855F7]'}">${issue.status.toUpperCase()}</span>
+        <span class="mx-2 h-1 w-1 rounded-full bg-gray-500 "></span>
+        <span  class="text-gray-500">Opened by ${issue.author}</span>
+        <span class="mx-2 h-1 w-1 rounded-full bg-gray-500 "></span>
+        <span class="text-gray-500">${new Date(issue.createdAt).toLocaleDateString("en-GB")}</span>
+      </div>
+      <div class="flex gap-2 flex-wrap">
+        
+         ${issue.labels.map(label => renderLabelBadge(label)).join("")}
+      </div>
+      <p class="text-gray-600">
+        ${issue.description}
+      </p>
+
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+        <div>
+          <p class=" text-gray-600">Assignee:</p>
+          <h4 class="font-semibold">${issue.assignee}</h4>
+        </div>
+        <div>
+          <p class="text-gray-600">Priority:</p>
+          <span class="py-1 px-3 rounded-full ${issue.priority == 'high' ? 'bg-error text-white' : issue.priority == 'medium' ? 'bg-warning text-white' : 'bg-gray-200 text-gray-600'} ">
+        ${issue.priority.toUpperCase()}</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn btn-primary">Close</button>
+      </form>
+    </div>
+  </div>
+  `;
+  
+  myModal.showModal();
+  // my_modal_1.showModal()
+
+}
+
+// modalContent();
+
 function makeIssuesCard(issue) {
     
     const card = document.createElement('div');
     card.classList.add('h-full');
     card.innerHTML = `
      
-    <div class="card bg-base-100 shadow-md border-t-4 h-full ${issue.status == 'open' ? 'border-success' : 'border-[#A855F7]'} text-sm">
+    <div onclick="getSingleIssue(${issue.id})" class="card bg-base-100 shadow-md border-t-4 h-full ${issue.status == 'open' ? 'border-success' : 'border-[#A855F7]'} text-sm">
 
     <div class="card-body gap-3 p-2">
 

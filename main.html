@@ -101,7 +101,7 @@
 
     <!-- issues section -->
     <section
-      class="max-w-6xl mx-auto p-6 shadow-sm rounded-lg bg-white flex items-center justify-between"
+      class="max-w-6xl mx-auto p-6 shadow-sm rounded-lg bg-white flex items-start sm:items-center justify-between flex-col sm:flex-row gap-4"
     >
       <!-- left -->
       <div class="flex justify-center items-center gap-2">
@@ -122,20 +122,25 @@
           Closed
         </div>
     </section>
-    <!-- issues Cards -->
     <section class="max-w-6xl mx-auto p-6 sm:p-0">
       <!-- Loading spinner -->
       <div id="loading-spinner" class="hidden text-center py-4">
         <span class="loading loading-spinner loading-xs"></span>
-      <span class="loading loading-spinner loading-sm"></span>
-      <span class="loading loading-spinner loading-md"></span>
-      <span class="loading loading-spinner loading-lg"></span>
-      <span class="loading loading-spinner loading-xl"></span>
+        <span class="loading loading-spinner loading-sm"></span>
+        <span class="loading loading-spinner loading-md"></span>
+        <span class="loading loading-spinner loading-lg"></span>
+        <span class="loading loading-spinner loading-xl"></span>
       </div>
+      <!-- issues Cards -->
       <div id="issues-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-center justify-center place-items-center my-4 ">
         <!-- Issue cards will be dynamically inserted here -->
          
       </div>
+      <!-- modal  -->
+
+<dialog id="my_modal_1" class="modal">
+  
+</dialog>
       
     </section>
 
