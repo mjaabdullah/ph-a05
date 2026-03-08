@@ -1,3 +1,6 @@
+
+const searchBtn = document.getElementById('search-btn');
+
 const btnAll = document.getElementById('btn-all');
 const btnOpen = document.getElementById('btn-open');
 const btnClosed = document.getElementById('btn-closed');
@@ -56,7 +59,7 @@ const getIssues = async (order) => {
 getIssues('all');
 
 function renderIssuesCards(issues) {
-  
+  issuesCardsContainer.innerHTML = '';
   issues.forEach((issue) => {
     const card = makeIssuesCard(issue);
     issuesCardsContainer.appendChild(card);
@@ -65,6 +68,22 @@ function renderIssuesCards(issues) {
     
 }
 
+const searchIssues = async (searchText) => {
+  let response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);   
+  let data = await response.json();
+
+  let searchResults = data.data;
+  renderIssuesCards(searchResults);
+  issuesTotal.textContent = searchResults.length;
+}
+
+searchBtn.addEventListener('click', () => {
+  const searchInput = document.getElementById('search-input');
+  const searchText = searchInput.value.trim().toLowerCase();
+
+  searchIssues(searchText);
+
+});
 // {
 // "id": 1,
 // "title": "Fix navigation menu on mobile devices",
@@ -117,6 +136,9 @@ function renderLabelBadge(label) {
     </span>
   `;
 }
+
+
+
 
 const getSingleIssue = async (id) => {
   let response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
@@ -174,11 +196,9 @@ function modalContent(issue) {
   `;
   
   myModal.showModal();
-  // my_modal_1.showModal()
 
 }
 
-// modalContent();
 
 function makeIssuesCard(issue) {
     
