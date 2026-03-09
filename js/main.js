@@ -69,6 +69,13 @@ function renderIssuesCards(issues) {
 }
 
 const searchIssues = async (searchText) => {
+  issuesCardsContainer.innerHTML = '';
+  loadingSpinner.classList.remove('hidden');
+
+  allBtns.forEach((b) => b.classList.remove('btn-primary'));
+    
+    document.getElementById('btn-all').classList.add('btn-primary');
+
   let response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);   
   let data = await response.json();
 
@@ -84,40 +91,26 @@ searchBtn.addEventListener('click', () => {
   searchIssues(searchText);
 
 });
-// {
-// "id": 1,
-// "title": "Fix navigation menu on mobile devices",
-// "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
-// "status": "open",
-// "labels": [
-// "bug",
-// "help wanted"
-// ],
-// "priority": "high",
-// "author": "john_doe",
-// "assignee": "jane_smith",
-// "createdAt": "2024-01-15T10:30:00Z",
-// "updatedAt": "2024-01-15T10:30:00Z"
-// }
+
 const labelStyleMap = {
   "bug": {
-    badge: "badge-error badge-outline",
+    badge: "badge-error",
     icon: "fa-solid fa-bug",
   },
   "help wanted": {
-    badge: "badge-warning badge-outline",
+    badge: "badge-warning",
     icon: "fa-solid fa-handshake-angle",
   },
   "enhancement": {
-    badge: "badge-success badge-outline",
+    badge: "badge-success",
     icon: "fa-solid fa-wand-magic-sparkles",
   },
   "good first issue": {
-    badge: "badge-secondary badge-outline",
+    badge: "badge-secondary",
     icon: "fa-solid fa-star",
   },
   "documentation": {
-    badge: "badge-info badge-outline",
+    badge: "badge-info",
     icon: "fa-solid fa-book",
   },
 };
@@ -125,22 +118,34 @@ const labelStyleMap = {
 function renderLabelBadge(label) {
   const key = String(label).trim().toLowerCase();
   const style = labelStyleMap[key] || {
-    badge: "badge-ghost badge-outline",
+    badge: "badge-ghost",
     icon: "fa-solid fa-tag",
   };
 
   return `
-    <span class="badge ${style.badge} gap-2 font-semibold">
+    <span class="badge ${style.badge} badge-outline gap-2 font-semibold">
       <i class="${style.icon} text-xs" aria-hidden="true"></i>
       ${String(label).toUpperCase()}
     </span>
   `;
 }
 
-
-
+const myModal = document.getElementById('my_modal_1');
 
 const getSingleIssue = async (id) => {
+  myModal.innerHTML= `
+  <div class="modal-box text-center"> 
+  <span class="loading loading-ring loading-xs"></span>
+  <span class="loading loading-ring loading-sm"></span>
+  <span class="loading loading-ring loading-md"></span>
+  <span class="loading loading-ring loading-lg"></span>
+  <span class="loading loading-ring loading-xl"></span>
+  </div>
+  
+  `;
+
+    myModal.showModal();
+
   let response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
     
     let data = await response.json();
@@ -150,9 +155,7 @@ const getSingleIssue = async (id) => {
 
  
 function modalContent(issue) {
-  console.log(issue);
-
-  const myModal = document.getElementById('my_modal_1');
+  
   myModal.innerHTML = `
   <div class="modal-box">
     <div class="space-y-3">
@@ -194,8 +197,6 @@ function modalContent(issue) {
     </div>
   </div>
   `;
-  
-  myModal.showModal();
 
 }
 
