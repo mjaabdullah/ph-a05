@@ -153,7 +153,7 @@ const getSingleIssue = async (id) => {
     modalContent(data.data);
 }
 
- 
+
 function modalContent(issue) {
   
   myModal.innerHTML = `
